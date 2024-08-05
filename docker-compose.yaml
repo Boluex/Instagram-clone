@@ -1,0 +1,7 @@
+services:
+  django_web:
+    container_name: instagram_clone
+    build:
+      context: .
+    ports: 
+      - "8000:8000"
