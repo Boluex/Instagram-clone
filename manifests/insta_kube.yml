@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+   name: instagram-clone
+spec:
+   replicas: 1
+   selector:
+     matchLabels:
+       app: instagram-clone
+   template:
+     metadata:
+       labels: 
+          app: instagram-clone
+     spec:
+       containers:
+         - name: instagram-container
+           image:  boluex/instagram_clone:1.0
+           ports:
+             - containerPort: 8000
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: instagram-clone
+spec:
+  selector:
+    app: instagram-clone
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8000
+  type: NodePort
+ 
+
+          
